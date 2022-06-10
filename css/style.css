@@ -1,0 +1,526 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  /* 1rem = 10px，原預設font-size = 16px，手動跟改為16px * 62.5% = 10px */
+  font-size: 62.5%;
+}
+
+body {
+  font-family: "Noto Sans TC", sans-serif;
+  line-height: 1;
+  font-weight: 400;
+  color: #555;
+
+  height: 100vh;
+  background-color: #f4faf6;
+  /* background-color: #fafafa; */
+}
+
+.header {
+  height: 15%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.header-title {
+  font-size: 6.4rem;
+  font-weight: 500;
+  letter-spacing: 1.5px;
+  color: #20c997;
+}
+
+.main {
+  height: 85%;
+}
+
+.container {
+  max-width: 95vw;
+  height: 95%;
+  margin: 0 auto;
+  background-color: transparent;
+  position: relative;
+
+  display: grid;
+  grid-template-columns: 42rem 1fr;
+}
+
+.travel-container {
+  height: 100%;
+  padding: 1.6rem;
+  background-color: #c6e6d1;
+
+  overflow-y: scroll;
+  overflow-x: hidden;
+
+  display: flex;
+  flex-direction: column;
+  gap: 2.4rem;
+}
+
+/************* 上方搜尋欄位 *****************/
+
+.search-bar {
+  margin-top: 1.6rem;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.search-input {
+  border: none;
+  border-bottom: 3px solid #fafafa;
+  color: #fafafa;
+  width: 90%;
+  font-size: 2.4rem;
+  font-weight: 600;
+  padding: 0.4rem 1.6rem;
+  background-color: transparent;
+}
+
+.search-input:focus {
+  outline: none;
+  border-bottom: 3px solid #555;
+}
+
+.search-input::placeholder {
+  color: #fafafa;
+}
+
+.search-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 100%;
+  border: none;
+  padding: 1.2rem 1.2rem;
+  cursor: pointer;
+  background-color: #ddf0e3;
+
+  transition: all 0.3s;
+}
+
+.search-btn:hover {
+  background-color: #f4faf6;
+}
+
+/************* 表單部分 *****************/
+
+.form {
+  font-size: 1.8rem;
+  font-weight: 600;
+  background-color: #ddf0e3;
+  padding: 1.2rem 1rem;
+  border-radius: 4px;
+  color: #4baa6c;
+  height: 24.2rem;
+  overflow: hidden;
+  opacity: 1;
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  flex-shrink: 0;
+  gap: 1.2rem;
+
+  transform: translate(0, 0);
+  transition: all 0.5s;
+}
+
+.form-border-play {
+  border-left: 6px solid #228be6;
+}
+
+.form-border-eat {
+  border-left: 6px solid #ff922b;
+}
+
+.form-border-site {
+  border-left: 6px solid #845ef7;
+}
+
+.form-border-buy {
+  border-left: 6px solid #f783ac;
+}
+
+.form-hidden {
+  height: 0rem !important;
+  opacity: 0;
+  padding: 0 1.6rem;
+  transform: translate(0, -7%);
+}
+
+.form-list {
+  display: flex;
+  flex-direction: column;
+  gap: 2.4rem;
+}
+
+.form-list .form-lock .form-input {
+  box-shadow: inset 0 -2px 0 0 transparent;
+}
+
+.hidden {
+  display: none !important;
+}
+
+.form-row {
+  display: flex;
+  align-items: center;
+}
+
+.form-label {
+  margin: 0 0.8rem 0.4rem 0.8rem;
+}
+
+.form-row--list {
+  display: flex;
+  align-items: center;
+}
+
+.form-input {
+  font-size: 1.6rem;
+  font-weight: 600;
+  padding: 0 0.4rem 0.2rem;
+  color: #333;
+
+  border: none;
+  box-shadow: inset 0 -2px 0 0 #fafafa;
+  background-color: transparent;
+}
+
+/* Chrome, Safari, Edge, Opera */
+/** 關掉 input type="number" 的右側控制項 **/
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.form-input:focus {
+  outline: none;
+  box-shadow: inset 0 -2px 0 0 #555;
+}
+
+.form-input--year {
+  width: 4.8rem;
+}
+.form-input--month {
+  width: 2.8rem;
+}
+.form-input--day {
+  width: 2.8rem;
+}
+.form-input--hour {
+  margin-left: 1.8rem;
+  width: 2.8rem;
+}
+.form-input--min {
+  width: 2.8rem;
+}
+
+.form-input--type {
+  margin-right: 1.2rem;
+}
+
+.form-input--title {
+  width: 16rem;
+}
+
+.form-input--note {
+  width: 28rem;
+}
+
+.form-input--place {
+  width: 25rem;
+  box-shadow: inset 0 -2px 0 0 transparent;
+}
+
+.form-input--place:focus {
+  box-shadow: inset 0 -2px 0 0 transparent;
+}
+
+.form-label.place-label {
+  margin: 0 0.8rem 0.4rem 0.4rem;
+}
+
+.google-map {
+  text-decoration: none;
+}
+
+.google-map-icon {
+  font-size: 2.8rem;
+  color: #993333;
+
+  transition: all 0.6s ease-out;
+}
+
+.google-map-icon:hover {
+  transform: scale(1.3) rotate(360deg);
+}
+
+.form-row-btn {
+  margin-top: 1.2rem;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.form-btn {
+  padding: 0.4rem 3.6rem;
+  font-size: 1.6rem;
+  font-weight: 900;
+  background-color: transparent;
+  cursor: pointer;
+  overflow: hidden;
+
+  transition: all 0.4s;
+}
+
+.form-btn:hover {
+  transform: translateY(-0.36em);
+}
+
+.delete-btn {
+  color: #f03e3e;
+  border: 3px solid #f03e3e;
+}
+
+.form-btn:hover.delete-btn {
+  box-shadow: 0 0.8em 0.7em -0.36em #f9b2b2;
+}
+
+.update-btn,
+.save-btn {
+  color: #fff;
+  background-color: #1c7ed6;
+  border: 3px solid #1c7ed6;
+}
+
+.form-btn:hover.update-btn,
+.form-btn:hover.save-btn {
+  box-shadow: 0 0.8em 0.7em -0.36em #77b2e6;
+}
+
+/************* 浮動小工具列 *****************/
+
+.tool-container {
+  position: absolute;
+  bottom: 2.5%;
+  left: 33rem;
+  z-index: 999;
+
+  min-height: 194px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.tool--control-btn {
+  font-size: 4.8rem;
+  padding: 0.8rem;
+  width: 5.4rem;
+  height: 5.4rem;
+  border: none;
+  border-radius: 100%;
+  cursor: pointer;
+  color: #fff;
+  background-color: #099268;
+  z-index: 10;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.4s;
+}
+
+.tool--control-icon {
+  font-size: 6.4rem;
+  --ionicon-stroke-width: 6.4rem;
+}
+
+.show-tool .tool--control-btn {
+  transform: rotate(135deg);
+}
+
+.tool {
+  padding: 0.8rem;
+  width: 3.6rem;
+  height: 3.6rem;
+  border: none;
+  border-radius: 100%;
+  cursor: pointer;
+  color: #fff;
+  background-color: #3aa886;
+  z-index: 9;
+  top: 75%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  position: absolute;
+  transition: all 0.4s;
+}
+
+.tool:hover {
+  animation: shake-it 0.65s infinite;
+}
+
+.show-tool .tool--sort-btn {
+  top: 0;
+}
+
+.sort-active.tool--sort-btn {
+  background-color: #ff6b6b;
+}
+
+.show-tool .tool--search-btn {
+  top: 23%;
+}
+
+.search-active.tool--search-btn {
+  background-color: #ff6b6b;
+}
+
+.show-tool .tool--add-btn {
+  top: 46%;
+}
+
+.tool-icon {
+  font-size: 2.4rem;
+  --ionicon-stroke-width: 48px;
+}
+
+/************* 地圖相關 *****************/
+
+#map {
+  width: 100%;
+  height: 100%;
+  background-color: transparent;
+}
+
+.search-address-bar {
+  position: absolute;
+  width: 23rem;
+  top: 5px;
+  left: 42.5rem;
+  z-index: 999;
+}
+
+.input-search-address {
+  font-size: 1.6rem;
+  font-weight: 600;
+  padding: 0.8rem;
+}
+
+.easy-autocomplete {
+  width: 100% !important;
+}
+
+.easy-autocomplete-container ul {
+  cursor: pointer;
+  font-size: 1.6rem;
+  font-weight: 500;
+  list-style-type: none;
+  background-color: rgba(51, 51, 51, 0.6);
+  color: #fafafa;
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.easy-autocomplete-container ul li {
+  width: 100%;
+  padding: 0.8rem;
+  transition: all 0.4s;
+}
+
+.easy-autocomplete-container ul li:hover {
+  color: #25e0a8;
+  transform: translateX(6px);
+}
+
+/************ PoP ************/
+
+.leaflet-popup .leaflet-popup-content-wrapper {
+  border-radius: 5px;
+  padding-right: 0.6rem;
+}
+
+.leaflet-popup .leaflet-popup-content {
+  text-align: center;
+}
+
+.leaflet-popup-content strong {
+  font-size: 1.4rem;
+  font-weight: 700;
+}
+
+.play-pop .leaflet-popup-content-wrapper {
+  border-left: 6px solid #228be6;
+}
+
+.eat-pop .leaflet-popup-content-wrapper {
+  border-left: 6px solid #ff922b;
+}
+
+.site-pop .leaflet-popup-content-wrapper {
+  border-left: 6px solid #845ef7;
+}
+
+.buy-pop .leaflet-popup-content-wrapper {
+  border-left: 6px solid #f783ac;
+}
+
+/************* Error Msg *****************/
+.error {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+}
+
+.error-icon {
+  margin-top: 0.4rem;
+  font-size: 3.6rem;
+  font-weight: 900;
+  color: #f08c00;
+}
+
+.error-msg {
+  font-size: 2.4rem;
+  font-weight: 700;
+  color: #1971c2;
+}
+
+/************* 動畫 *****************/
+
+@keyframes shake-it {
+  0%,
+  20%,
+  40%,
+  60%,
+  80%,
+  100% {
+    transform: translateX(6%);
+  }
+
+  10%,
+  30%,
+  50%,
+  70%,
+  90% {
+    transform: translateX(-6%);
+  }
+}

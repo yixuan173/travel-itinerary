@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="zh-hant">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>旅記 | 紀錄屬於你的旅程</title>
+    <meta
+      name="description"
+      content="旅遊地點簡易規劃網站，結合Leaflet + OSM，讓使用者能看著地圖規劃行程內容。"
+    />
+    <meta name="author" content="yixuan173" />
+    <link
+      rel="icon"
+      href="https://img.icons8.com/fluency/48/000000/afternoon.png"
+    />
+
+    <!-- google fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100;300;400;500;700;900&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Using jQuery with a CDN -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    <!-- leaflet map -->
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+      integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+      crossorigin=""
+    />
+    <script
+      src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+      integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+      crossorigin=""
+    ></script>
+
+    <!-- easy autocomplete -->
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/easy-autocomplete/1.3.5/jquery.easy-autocomplete.min.js"
+      integrity="sha512-Z/2pIbAzFuLlc7WIt/xifag7As7GuTqoBbLsVTgut69QynAIOclmweT6o7pkxVoGGfLcmPJKn/lnxyMNKBAKgg=="
+      crossorigin="anonymous"
+    ></script>
+
+    <!-- ionicons -->
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"
+    ></script>
+
+    <!-- uuid -->
+    <script
+      defer
+      src="https://cdnjs.cloudflare.com/ajax/libs/uuid/8.3.2/uuid.min.js"
+    ></script>
+
+    <link rel="stylesheet" href="./css/style.css" />
+    <link rel="stylesheet" href="./css/queries.css" />
+    <script type="module" defer src="./js/controller.js"></script>
+  </head>
+
+  <body>
+    <header class="header">
+      <h1 class="header-title">旅記</h1>
+    </header>
+
+    <!-- 主要內容 -->
+    <main class="main">
+      <div class="container">
+        <div class="travel-container">
+          <div class="search-bar hidden">
+            <input type="text" class="search-input" placeholder="Search..." />
+          </div>
+          <form class="form first-form form-hidden form-border-pink">
+            <div class="form-row">
+              <label class="form-label">時間:</label>
+              <div class="form-row--list">
+                <input
+                  class="form-input form-input--year"
+                  placeholder="年"
+                  type="number"
+                  min="2022"
+                  required
+                />
+                <span class="form-label">/</span>
+                <input
+                  class="form-input form-input--month"
+                  placeholder="月"
+                  type="number"
+                  min="1"
+                  max="12"
+                  required
+                />
+                <span class="form-label">/</span>
+                <input
+                  class="form-input form-input--day"
+                  placeholder="日"
+                  type="number"
+                  min="1"
+                  max="31"
+                  required
+                />
+
+                <input
+                  class="form-input form-input--hour"
+                  placeholder="00"
+                  type="number"
+                  min="00"
+                  max="24"
+                />
+                <span class="form-label">:</span>
+                <input
+                  class="form-input form-input--min"
+                  placeholder="00"
+                  type="number"
+                  min="00"
+                  max="59"
+                />
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-row--list">
+                <label class="form-label">類型:</label>
+                <select class="form-input form-input--type" required>
+                  <option value="">----</option>
+                  <option value="eat">食</option>
+                  <option value="site">住</option>
+                  <option value="play">玩</option>
+                  <option value="buy">購</option>
+                </select>
+
+                <label class="form-label">標題:</label>
+                <input
+                  class="form-input form-input--title"
+                  placeholder=""
+                  required
+                />
+              </div>
+            </div>
+
+            <div class="form-row">
+              <label class="form-label">備註:</label>
+              <textarea rows="2" class="form-input form-input--note"></textarea>
+            </div>
+
+            <div class="form-row">
+              <label class="form-label">地點:</label>
+              <textarea
+                rows="2"
+                class="form-input form-input--place"
+                placeholder="請從地圖輸入框搜尋地址，或直接點擊地圖。"
+                readonly
+              ></textarea>
+            </div>
+
+            <div class="form-row-btn">
+              <button
+                type="button"
+                class="form-btn first-delete-btn delete-btn"
+              >
+                刪除
+              </button>
+              <!-- <button type="button" class="form-btn update-btn hidden">
+                修改
+              </button> -->
+              <button class="form-btn first-save-btn save-btn">保存</button>
+            </div>
+          </form>
+
+          <div class="form-list"></div>
+
+          <div class="tool-container">
+            <button class="tool tool--sort-btn sort">
+              <ion-icon
+                class="tool-icon sort"
+                name="swap-vertical-outline"
+              ></ion-icon>
+            </button>
+            <button class="tool tool--search-btn search">
+              <ion-icon
+                class="tool-icon search"
+                name="search-outline"
+              ></ion-icon>
+            </button>
+            <button class="tool tool--add-btn add">
+              <ion-icon class="tool-icon add" name="add-outline"></ion-icon>
+            </button>
+            <button class="tool--control-btn tool-control">
+              <ion-icon
+                class="tool--control-icon tool-control"
+                name="add-outline"
+              ></ion-icon>
+            </button>
+          </div>
+        </div>
+
+        <div id="map"></div>
+
+        <div class="search-address-bar hidden">
+          <input
+            id="inputbox"
+            class="input-search-address"
+            placeholder="搜尋地點..."
+          />
+        </div>
+      </div>
+    </main>
+  </body>
+</html>
